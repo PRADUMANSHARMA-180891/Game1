@@ -112,8 +112,8 @@
   cursor: pointer;
 }
 
-/* Checkout Component */
-.checkout-container {
+Checkout Component 
+ .checkout-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -183,3 +183,76 @@
   color: #fff;
   cursor: pointer;
 }
+
+ .checkout-form {
+     margin-top: 20px;
+   }
+   .checkout-form input {
+     margin-bottom: 10px;
+     width: 100%;
+     padding: 5px;
+   }
+
+   .checkout {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 1rem;
+  }
+  
+  .checkout h2 {
+    margin-top: 0;
+  }
+  
+  .checkout-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .checkout-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .checkout-datetime {
+    margin-bottom: 1rem;
+  }
+  
+  .checkout-datetime input {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+  
+  .checkout-select {
+    margin-bottom: 1rem;
+  }
+  
+  .checkout-select select {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  
+  .checkout-button {
+    margin-top: 1rem;
+  }
+  
+  .checkout-button button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .checkout-status {
+    margin-top: 1rem;
+  }
+  
+  .checkout-status p {
+    color: #007bff;
+  }
+  
+  .checkout-status.error {
+    color: #dc3545;
+  }

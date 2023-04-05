@@ -1,37 +1,18 @@
 import React from "react";
-import GameCard from "./GameCard"
-const gamesData = [
-    {
-      id: 1,
-      title: 'Super Mario Bros.',
-      price: 29.99,
-      image: 'https://via.placeholder.com/150'
-    },
-    {
-      id: 2,
-      title: 'The Legend of Zelda',
-      price: 39.99,
-      image: 'https://via.placeholder.com/150'
-    },
-    {
-      id: 3,
-      title: 'Pokemon Red',
-      price: 19.99,
-      image: 'https://via.placeholder.com/150'
-    }
-  ];
-  
-  function GameList() {
-    return (
-      <div className="game-list">
-        {gamesData.map(game => (
-          <GameCard key={game.id} game={game} />
-        ))}
-      </div>
-    );
-  }
-  
-  
-  
+
+const GameList = ({ games, handleAddToCart }) => {
+  return (
+    <div className="game-list-container">
+      {games.map((game) => (
+        <div key={game.id} className="game-card">
+          <h3>{game.name}</h3>
+          <p>{game.description}</p>
+          <p>Price: {game.price}$</p>
+          <button onClick={() => handleAddToCart(game)}>Add to cart</button>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default GameList;

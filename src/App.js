@@ -1,84 +1,75 @@
-import React, { useState } from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
-import GameList from './GameList';
-import Cart from './Cart';
-import Login from './Login';
-import Signup from './Signup';
-import Checkout from './Checkout';
-import './App.css';
+import React, { useState } from "react";
+import Login from "./Login";
+import Signup from "./Signup";
+import GameList from "./GameList";
+import Checkout from "./Checkout";
+import "./App.css"
 
-function App() {
-  const [cartItems, setCartItems] = useState([]);
+const games = [
+  {
+    id: 1,
+    name: "Hi Stricker",
+    description: "Description for Hi Stricker",
+    price: 10,
+  },
+  {
+    id: 2,
+    name: "puch Challenge",
+    description: "Description for puch Challenge",
+    price: 20,
+  },
+  {
+    id: 3,
+    name: "Bow and Arrow",
+    description: "Description for Bow and Arrow",
+    price: 30,
+  },
+  {
+    id: 4,
+    name: "Catch fish",
+    description: "Description for Catch fish",
+    price: 40,
+  },
+];
+
+const App = () => {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
+  const [cart, setCart] = useState([]);
 
-  function addToCart(item) {
-    setCartItems([...cartItems, item]);
-  }
+  const handleLogin = (userData) => {
+    // Handle login logic here
+    setUser(userData);
+  };
 
-  function removeFromCart(item) {
-    setCartItems(cartItems.filter(i => i.id !== item.id));
-  }
+  const handleSignup = (userData) => {
+    // Handle signup logic here
+    setUser(userData);
+  };
 
-  function handleLogin(user) {
-    setUser(user);
-    navigate('/');
-  }
+  const handleAddToCart = (game) => {
+    setCart([...cart, game]);
+  };
 
-  function handleLogout() {
-    setUser(null);
-    setCartItems([]);
-    navigate('/');
-  }
+  const handleRemoveFromCart = (gameToRemove) => {
+    setCart(cart.filter((game) => game.id !== gameToRemove.id));
+  };
 
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/cart">Cart ({cartItems.length})</Link>
-          </li>
-          {user ? (
-            <li>
-              <button onClick={handleLogout}>Logout</button>
-            </li>
-          ) : (
-            <>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/signup">Signup</Link>
-              </li>
-            </>
-          )}
-        </ul>
-      </nav>
-      <Routes>
-        <Route path="/" element={<GameList onAddToCart={addToCart} />} />
-        <Route
-          path="/cart"
-          element={<Cart cartItems={cartItems} onRemoveItem={removeFromCart} />}
-        />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route
-          path="/checkout"
-          element={
-            user ? (
-              <Checkout cartItems={cartItems} onClearCart={() => setCartItems([])} />
-            ) : (
-              // <Navigate to="/login" />
-              <button>ehoh</button>
-            )
-          }
-        />
-      </Routes>
+      {user ? (
+        <div>
+          <h2>Welcome, {user.username}!</h2>
+          <GameList games={games} handleAddToCart={handleAddToCart} />
+          <Checkout cart={cart} handleRemoveFromCart={handleRemoveFromCart} />
+        </div>
+      ) : (
+        <div>
+          <Login handleLogin={handleLogin} />
+          <Signup handleSignup={handleSignup} />
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default App;
